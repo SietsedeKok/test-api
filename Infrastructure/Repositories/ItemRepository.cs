@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Domain;
 using Infrastructure.Interfaces;
 
@@ -8,16 +11,8 @@ public class ItemRepository : IItemRepository
 
     private readonly List<Item> _items = new List<Item>
     {
-        new(1, "item 1")
-        {
-            Id = 1,
-            Name = "item 10"
-        },
-        new(2, "item 2")
-        {
-            Id = 2,
-            Name = "item 2"
-        }
+        new Item(1, "item 1"),
+        new Item(2, "item 2")
     };
     
     public async Task<IEnumerable<Item>> GetItemsFromDb()

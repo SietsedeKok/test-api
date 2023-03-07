@@ -1,9 +1,9 @@
 namespace Domain;
 
-public class Item
+public record Item
 {
-    public required int Id { get; set; }
-    public required string Name { get; set; }
+    public int Id { get; }
+    private string Name { get; }
     
     public Item(int id, string name) {
         Id = id;

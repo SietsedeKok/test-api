@@ -1,5 +1,6 @@
 using Application.Interfaces;
 using Application.Services;
+using Host.Endpoints;
 using Infrastructure.Interfaces;
 using Infrastructure.Repositories;
 
@@ -27,14 +28,15 @@ var app = builder.Build();
 // App
 app.UseCors();
 
-app.UsePathBase("/api");
-
-app.MapGet("/", () => "Hello World!");
+// Base Endpoints
+app.MapGet("/health", () => "Healthy!");
 
 app.MapGet("/items", async (IItemService itemService) => 
     await itemService.GetItems());
 
 app.MapGet("/items/{id:int}", async (int id, IItemService itemService) => 
     await itemService.GetItem(id));
+
+CookingEndpoints.AddCookingEndpoints(app);
 
 app.Run();
